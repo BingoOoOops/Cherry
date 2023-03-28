@@ -2,7 +2,10 @@
 
 ## Abstract: 
 
-Applications constantly generate and collect large data series, and analysts require real-time data series similarity search to meet the demands of data analysis applications. However, even state-of-the-art works are unable to meet the performance requirements of many scenarios. We propose Cherry, an index with extremely fast write performance and superior query capability through careful design. We present a novel index structure, ZSBtree, that draws inspiration from the combined features of Z-order curve and Symbolic Aggregate approXimation (SAX), to efficiently merge the clustering ability of SAX with the performance of B+Tree. With the aid of a specially designed heuristic bulk-loading algorithm, the ZSBtree exhibits remarkable pruning capability and performance without incurring any additional time cost. To achieve high writing and query processing efficiency, we further integrate ZSBtree and Log-Structured Merge Tree (LSM), and specifically design parallel and heuristic algorithms for them. Additionally, we leverage the parallel capabilities of modern hardware to accelerate expensive vector operations in our algorithm. Compared with the current fastest multi-core architecture work on a 1 billion dataset, Cherry utilizes two orders of magnitude less memory and half the index size, achieves an index construction speed that is 0.42x faster, and exact query speed that is 10.8x faster.
+We propose Cherry, an index with extremely fast write performance and superior query capability through careful design.
+Compared with the ParIS+ on a 1 billion dataset, Cherry utilizes two orders of magnitude less memory and half the index size, 
+achieves an index construction speed that is 0.42x faster, 
+approximate query speed that is 4.2x faster (with 25% lower distance of answers) and exact query speed that is 10.8x faster.
 
 # 1. Project Structure
 
