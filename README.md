@@ -43,7 +43,7 @@ You can find Idea's VM options settings in: top right corner select `Edit Run/De
 
 Of course, If you don't want to install Idea and Clion, it can also be compiled and run only using the following command：
 ```sh
-# 1. Compile leveldb_sax
+# 1. Compile the leveldb_sax
 mkdir -p leveldb_sax/build
 cd leveldb_sax/build
 cmake -DCMAKE_BUILD_TYPE=Release .. 
@@ -53,7 +53,7 @@ cmake --build . --target leveldbj -j 3
 cd ../.. && mkdir -p out
 javac -d out -cp "lib/*" -sourcepath src/main/java src/main/java/com/cherry/Main.java src/main/java/leveldb_sax/db_send.java
 
-# 3. Run Cherry
+# 3. Run the Cherry
 java -cp out:"lib/*"  -Djava.library.path=leveldb_sax/build/  com.cherry.Main
 ```
 
@@ -64,9 +64,22 @@ The program will automatically build index and perform queries.
 
 # 4. Parameter
 Our parameters are set in the following two files.
-1. `leveldb_sax/sax/include/globals.h`
-2. `src/main/java/com/cherry/Parameters.java`
+
+1. [`leveldb_sax/sax/include/globals.h`](https://github.com/imarcher/Cherry/blob/master/code/leveldb_sax/sax/include/globals.h)
+2. [`src/main/java/com/cherry/Parameters.java`](https://github.com/imarcher/Cherry/blob/master/code/src/main/java/com/cherry/Parameters.java)
 
 Please update it to the appropriate setting by yourself before running.
 
 Note that some parameters in these two files are corresponding and need to be modified together.
+
+Some important parameters in the paper are as follows:
+
+
+| Parameter   |                     Definition                     | Parameter in code (global.h / Parameters.java) |
+|-------------|:--------------------------------------------------:|-----------------------------------------------:|
+| TS Size     |    Size of data series or time series in bytes     |                     `Ts_length` / `tsDataSize` |
+| PS          |           Number of PAA or SAX segments            |                  `is8_segment` / `segmentSize` |
+| CB          |    Cardinality bits of a single segment of SAX     |           `Bit_cardinality` / `bitCardinality` |
+| SAXT Size   | Size of transpose of SAX summary that has CB words |                               `-` / `saxTSize` |
+| NM          |          Minimum number of keys of a node          |                           `Leaf_minnum`  / `-` |
+| NN          |          Maximum number of keys of a node          |                           `Leaf_maxnum`  / `-` |
